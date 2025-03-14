@@ -1,4 +1,4 @@
-package com.pro.model.param;
+package com.v02.minback.model.param;
 
 
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.Map;
 
 @Getter
 @Setter

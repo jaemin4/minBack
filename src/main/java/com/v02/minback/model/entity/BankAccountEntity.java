@@ -1,4 +1,4 @@
-package com.pro.model.entity;
+package com.v02.minback.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;

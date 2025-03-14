@@ -1,8 +1,9 @@
-package com.pro.filter;
+package com.v02.minback.filter;
 
-import com.pro.service.front.LogoutFrontService;
-import com.pro.util.FilterUtil;
-import com.pro.util.JwtUtil;
+
+import com.v02.minback.service.front.LogoutFrontService;
+import com.v02.minback.util.FilterUtil;
+import com.v02.minback.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,7 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;

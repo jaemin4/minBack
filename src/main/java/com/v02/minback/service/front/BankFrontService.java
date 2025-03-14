@@ -1,24 +1,23 @@
-package com.pro.service.front;
+package com.v02.minback.service.front;
 
-import com.pro.exception.BankRuntimeException;
-import com.pro.model.entity.AccountEntity;
-import com.pro.model.entity.BankAccountEntity;
-import com.pro.model.entity.UserEntity;
-import com.pro.model.param.*;
-import com.pro.model.result.RestResult;
-import com.pro.service.persist.BankService;
-import com.pro.util.ServiceUtil;
-import com.pro.util.ValidationChecker;
+import com.v02.minback.exception.BankRuntimeException;
+import com.v02.minback.model.entity.AccountEntity;
+import com.v02.minback.model.entity.BankAccountEntity;
+import com.v02.minback.model.entity.UserEntity;
+import com.v02.minback.model.param.*;
+import com.v02.minback.model.result.RestResult;
+import com.v02.minback.service.persist.BankService;
+import com.v02.minback.util.ServiceUtil;
+import com.v02.minback.util.ValidationChecker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Map;
 
-import static com.pro.util.ValidationChecker.*;
+import static com.v02.minback.util.ValidationChecker.transferValidationCheck;
+import static com.v02.minback.util.ValidationChecker.withrdrawValidationCheck;
 
-// Aggregator 패턴.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -149,7 +148,6 @@ public class BankFrontService {
 
         bankService.transfer(param,fromSavedAccount,toSavedAccount);
 
-        //rabbitTemplate.convertAndSend("bank.exchange","bank.log.transfer", balanceLogParam);
         return new RestResult("이체 성공","success");
     }
 

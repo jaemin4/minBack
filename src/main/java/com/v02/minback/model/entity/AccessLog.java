@@ -1,4 +1,4 @@
-package com.pro.model.entity;
+package com.v02.minback.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

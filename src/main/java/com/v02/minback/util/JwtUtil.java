@@ -1,4 +1,4 @@
-package com.pro.util;
+package com.v02.minback.util;
 
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;

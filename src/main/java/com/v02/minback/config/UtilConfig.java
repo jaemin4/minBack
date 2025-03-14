@@ -1,4 +1,4 @@
-package com.pro.config;
+package com.v02.minback.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

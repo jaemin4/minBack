@@ -1,4 +1,4 @@
-package com.pro.util;
+package com.v02.minback.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

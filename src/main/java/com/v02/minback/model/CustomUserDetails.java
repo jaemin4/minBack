@@ -1,6 +1,6 @@
-package com.pro.model;
+package com.v02.minback.model;
 
-import com.pro.model.entity.UserEntity;
+import com.v02.minback.model.entity.UserEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

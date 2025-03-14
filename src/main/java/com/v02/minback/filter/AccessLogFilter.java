@@ -1,13 +1,12 @@
-package com.pro.filter;
+package com.v02.minback.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pro.model.param.AccessLogParam;
+import com.v02.minback.model.param.AccessLogParam;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -24,7 +23,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AccessLogFilter implements Filter {
 
-    private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
 
     @Override
@@ -60,8 +58,6 @@ public class AccessLogFilter implements Filter {
                 res.getStatus(),
                 Duration.between(requestAt, responseAt).toMillis()
         );
-
-        //rabbitTemplate.convertAndSend("bank.exchange","bank.log.access", accessLogParam);
 
         res.copyBodyToResponse();
 

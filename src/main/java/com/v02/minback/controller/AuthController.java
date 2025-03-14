@@ -1,10 +1,10 @@
-package com.pro.controller;
+package com.v02.minback.controller;
 
-import com.pro.exception.UserRuntimeException;
-import com.pro.model.result.RestResult;
-import com.pro.model.entity.RefreshEntity;
-import com.pro.repository.RefreshTokenRepository;
-import com.pro.util.JwtUtil;
+import com.v02.minback.exception.UserRuntimeException;
+import com.v02.minback.model.entity.RefreshEntity;
+import com.v02.minback.model.result.RestResult;
+import com.v02.minback.repository.RefreshTokenRepository;
+import com.v02.minback.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package com.pro.model.result;
+package com.v02.minback.model.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

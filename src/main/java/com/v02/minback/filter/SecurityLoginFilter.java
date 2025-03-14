@@ -1,12 +1,12 @@
-package com.pro.filter;
+package com.v02.minback.filter;
 
-import com.pro.model.result.TokenResponseDto;
-import com.pro.service.front.JwtFrontService;
+
+import com.v02.minback.model.result.TokenResponseDto;
+import com.v02.minback.service.front.JwtFrontService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import java.io.IOException;
 
 @Slf4j

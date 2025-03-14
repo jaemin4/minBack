@@ -1,4 +1,4 @@
-package com.pro.model.param;
+package com.v02.minback.model.param;
 
 import lombok.Getter;
 import lombok.Setter;

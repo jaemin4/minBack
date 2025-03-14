@@ -1,6 +1,6 @@
-package com.pro.controller;
+package com.v02.minback.controller;
 
-import com.pro.model.result.RestMessage;
+import com.v02.minback.model.result.RestMessage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

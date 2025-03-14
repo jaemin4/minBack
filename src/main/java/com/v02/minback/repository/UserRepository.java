@@ -1,7 +1,6 @@
-package com.pro.repository;
+package com.v02.minback.repository;
 
-import com.pro.model.entity.UserEntity;
-import org.apache.ibatis.annotations.Mapper;
+import com.v02.minback.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

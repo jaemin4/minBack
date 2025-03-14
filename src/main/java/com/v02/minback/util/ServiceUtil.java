@@ -1,8 +1,4 @@
-package com.pro.util;
-
-import jakarta.persistence.criteria.CriteriaBuilder;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+package com.v02.minback.util;
 
 import java.util.UUID;
 

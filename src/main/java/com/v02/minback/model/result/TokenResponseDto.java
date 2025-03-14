@@ -1,4 +1,4 @@
-package com.pro.model.result;
+package com.v02.minback.model.result;
 
 
 import jakarta.servlet.http.Cookie;

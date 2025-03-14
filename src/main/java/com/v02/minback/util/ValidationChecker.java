@@ -1,11 +1,12 @@
-package com.pro.util;
+package com.v02.minback.util;
 
-import com.pro.exception.BankRuntimeException;
-import com.pro.exception.UserRuntimeException;
-import com.pro.model.param.BankAccountDepositParam;
-import com.pro.model.param.BankAccountTransferParam;
-import com.pro.model.param.BankAccountWithdrawParam;
-import com.pro.model.param.UserAccountSaveParam;
+
+import com.v02.minback.exception.BankRuntimeException;
+import com.v02.minback.exception.UserRuntimeException;
+import com.v02.minback.model.param.BankAccountDepositParam;
+import com.v02.minback.model.param.BankAccountTransferParam;
+import com.v02.minback.model.param.BankAccountWithdrawParam;
+import com.v02.minback.model.param.UserAccountSaveParam;
 
 public class ValidationChecker {
 

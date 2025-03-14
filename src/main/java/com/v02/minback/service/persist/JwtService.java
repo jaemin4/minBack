@@ -1,13 +1,11 @@
-package com.pro.service.persist;
+package com.v02.minback.service.persist;
 
-import com.pro.model.entity.RefreshEntity;
-import com.pro.repository.RefreshTokenRepository;
+import com.v02.minback.model.entity.RefreshEntity;
+import com.v02.minback.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Ref;
 
 @Slf4j
 @Service

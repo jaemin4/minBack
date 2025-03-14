@@ -1,7 +1,8 @@
-package com.pro.util;
+package com.v02.minback.util;
 
-import com.pro.model.entity.UserEntity;
-import com.pro.model.CustomUserDetails;
+
+import com.v02.minback.model.CustomUserDetails;
+import com.v02.minback.model.entity.UserEntity;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

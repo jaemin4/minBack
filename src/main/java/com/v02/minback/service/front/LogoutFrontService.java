@@ -1,8 +1,8 @@
-package com.pro.service.front;
+package com.v02.minback.service.front;
 
-import com.pro.model.entity.RefreshEntity;
-import com.pro.service.persist.JwtService;
-import com.pro.util.JwtUtil;
+import com.v02.minback.model.entity.RefreshEntity;
+import com.v02.minback.service.persist.JwtService;
+import com.v02.minback.util.JwtUtil;
 import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

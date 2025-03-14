@@ -1,14 +1,14 @@
-package com.pro.config;
+package com.v02.minback.config;
 
 
-import com.pro.repository.RefreshTokenRepository;
-import com.pro.filter.SecurityJwtFilter;
-import com.pro.filter.SecurityLoginFilter;
-import com.pro.filter.SecurityLogoutFilter;
-import com.pro.service.front.JwtFrontService;
-import com.pro.service.front.LogoutFrontService;
-import com.pro.util.FilterUtil;
-import com.pro.util.JwtUtil;
+
+import com.v02.minback.filter.SecurityJwtFilter;
+import com.v02.minback.filter.SecurityLoginFilter;
+import com.v02.minback.filter.SecurityLogoutFilter;
+import com.v02.minback.service.front.JwtFrontService;
+import com.v02.minback.service.front.LogoutFrontService;
+import com.v02.minback.util.FilterUtil;
+import com.v02.minback.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
