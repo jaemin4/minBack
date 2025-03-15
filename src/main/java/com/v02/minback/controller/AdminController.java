@@ -14,4 +14,8 @@ public class AdminController {
 
         return new RestMessage("ROLE_ADMIN");
     }
+    @GetMapping("/test")
+    public RestMessage TestAccess(){
+        return new RestMessage("ROLE_ADMIN");
+    }
 }
