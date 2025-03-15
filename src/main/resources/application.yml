@@ -1,5 +1,3 @@
-#CHECK3
-
 server:
   port: 8080
   servlet:
@@ -8,7 +6,7 @@ server:
 
 spring:
   application:
-    name: minBack
+    name: pro
 
 
   datasource:
@@ -46,8 +44,17 @@ spring:
     resources:
       add-mappings: false
 
-  mvc:
-    throw-exception-if-no-handler-found: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 6000
+  cache:
+    type: redis
+    redis:
+      use-key-prefix: true
+      cache-null-values: true
 
 
 #mybatis

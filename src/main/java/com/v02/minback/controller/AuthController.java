@@ -1,12 +1,12 @@
 package com.v02.minback.controller;
 
 import com.v02.minback.exception.UserRuntimeException;
-import com.v02.minback.model.entity.RefreshEntity;
+import com.v02.minback.model.entity.AuthJwtEntity;
 import com.v02.minback.model.result.RestResult;
-import com.v02.minback.repository.RefreshTokenRepository;
+import com.v02.minback.service.front.JwtFrontService;
+import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,19 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final JwtUtil jwtUtil;
-    private final RefreshTokenRepository refreshTokenRepository;
+    private final JwtFrontService jwtFrontService;
+    private final FilterUtil filterUtil;
 
     @PostMapping("/reissue")
     public RestResult accessTokenRessiue(HttpServletRequest request, HttpServletResponse response){
-        Cookie[] cookies = request.getCookies();
-
-        String refresh = null;
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("refresh")){
-                refresh = cookie.getValue();
-                break;
-            }
-        }
+        String refresh = filterUtil.chkIsRefresh(request);
 
         if(refresh == null){
             throw new UserRuntimeException("refresh 토큰이 존재하지 않습니다");
@@ -48,28 +41,10 @@ public class AuthController {
             throw new UserRuntimeException("refresh 토큰이 존재하지 않습니다");
         }
 
-        RefreshEntity isExistRefresh = refreshTokenRepository.findByRefreshToken(refresh)
-                .orElseThrow(()-> new UserRuntimeException("토큰이 존재하지 않습니다."));
+        AuthJwtEntity resultAuth = jwtFrontService.reissueJwtToken(refresh);
 
-        String username = jwtUtil.getUsername(refresh);
-        String role = jwtUtil.getRole(refresh);
-
-        String newAccess = jwtUtil.createJwt("access",username,role,jwtUtil.getAccessExpiredTime());
-        String newRefresh = jwtUtil.createJwt("refresh",username,role,jwtUtil.getRefreshExpiredTime());
-
-        refreshTokenRepository.deleteByRefreshToken(refresh);
-        RefreshEntity refreshEntity = new RefreshEntity(
-                username,
-                refresh,
-                jwtUtil.getRefreshExpiredTime(),
-                newAccess,
-                jwtUtil.getAccessExpiredTime()
-        );
-
-        refreshTokenRepository.save(refreshEntity);
-
-        response.setHeader("access",newAccess);
-        response.addCookie(jwtUtil.createCookie(newRefresh));
+        response.setHeader("access",resultAuth.getAccessToken());
+        response.addCookie(jwtUtil.createCookie(resultAuth.getRefreshToken()));
         return new RestResult("access token reissue success","success");
     }
 

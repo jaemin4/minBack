@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class TokenResponseDto {
+public class JwtTokenResponseDto {
 
     private String accessToken;
     private Cookie refreshCookie;

@@ -1,7 +1,6 @@
 package com.v02.minback.filter;
 
-
-import com.v02.minback.model.result.TokenResponseDto;
+import com.v02.minback.model.result.JwtTokenResponseDto;
 import com.v02.minback.service.front.JwtFrontService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -41,11 +40,11 @@ public class SecurityLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        TokenResponseDto tokenResponseDto = jwtFrontService.saveToken(authResult);
+        JwtTokenResponseDto jwtTokenResponseDto = jwtFrontService.saveJwtToken(authResult);
         SecurityContextHolder.getContext().setAuthentication(authResult);
 
-        response.setHeader("access", tokenResponseDto.getAccessToken());
-        response.addCookie(tokenResponseDto.getRefreshCookie());
+        response.setHeader("access", jwtTokenResponseDto.getAccessToken());
+        response.addCookie(jwtTokenResponseDto.getRefreshCookie());
         response.setStatus(HttpStatus.OK.value());
     }
 

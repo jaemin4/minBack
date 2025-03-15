@@ -1,7 +1,6 @@
 package com.v02.minback.filter;
 
-
-import com.v02.minback.model.entity.RefreshEntity;
+import com.v02.minback.model.entity.RedisJwtEntity;
 import com.v02.minback.service.front.JwtFrontService;
 import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
@@ -27,8 +26,13 @@ public class SecurityJwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        RefreshEntity authResult =
-                jwtFrontService.getByAccess(request.getHeader("Authorization"));
+
+        if(request.getHeader("Authorization") == null){
+            filterChain.doFilter(request,response);
+            return;
+        }
+        RedisJwtEntity authResult =
+                jwtFrontService.JwtValidationByAccessToken(request.getHeader("Authorization"));
 
         if(authResult == null){
             filterChain.doFilter(request,response);

@@ -1,6 +1,5 @@
 package com.v02.minback.util;
 
-
 import com.v02.minback.exception.BankRuntimeException;
 import com.v02.minback.exception.UserRuntimeException;
 import com.v02.minback.model.param.BankAccountDepositParam;

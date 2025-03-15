@@ -7,7 +7,6 @@ import com.v02.minback.model.param.UserAccountSaveParam;
 import com.v02.minback.model.result.RestResult;
 import com.v02.minback.resolver.CurrentUser;
 import com.v02.minback.service.front.BankFrontService;
-import com.v02.minback.service.persist.BankService;
 import com.v02.minback.util.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BankAccountController {
 
-    private final BankService bankService;
     private final BankFrontService bankFrontService;
     private final Utils utils;
-
-    @GetMapping("/getAll")
-    public RestResult getAll(){
-        return bankService.getAll();
-    }
 
     @PostMapping("/save")
     public RestResult save(@RequestBody UserAccountSaveParam param){

@@ -18,6 +18,7 @@ import java.util.Map;
 import static com.v02.minback.util.ValidationChecker.transferValidationCheck;
 import static com.v02.minback.util.ValidationChecker.withrdrawValidationCheck;
 
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -148,6 +149,7 @@ public class BankFrontService {
 
         bankService.transfer(param,fromSavedAccount,toSavedAccount);
 
+        //rabbitTemplate.convertAndSend("bank.exchange","bank.log.transfer", balanceLogParam);
         return new RestResult("이체 성공","success");
     }
 

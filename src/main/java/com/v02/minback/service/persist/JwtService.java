@@ -1,7 +1,9 @@
 package com.v02.minback.service.persist;
 
-import com.v02.minback.model.entity.RefreshEntity;
-import com.v02.minback.repository.RefreshTokenRepository;
+import com.v02.minback.model.entity.AuthJwtEntity;
+import com.v02.minback.model.entity.RedisJwtEntity;
+import com.v02.minback.repository.JwtTokenRepository;
+import com.v02.minback.repository.RedisJwtRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,26 +14,33 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class JwtService {
 
-    private final RefreshTokenRepository refreshTokenRepository;
+    private final JwtTokenRepository jwtTokenRepository;
+    private final RedisJwtRepository redisJwtRepository;
 
-    public void saveJwtToken(RefreshEntity refreshEntity){
-        RefreshEntity resultRefreshEntity = refreshTokenRepository.save(refreshEntity);
-
-        log.info("JWT 저장 완료 : {}",resultRefreshEntity);
-    }
-
-    public RefreshEntity findByRefreshName(String refresh){
-        return refreshTokenRepository.findByRefreshToken(refresh).orElse(null);
-
-    }
     @Transactional
-    public void deleteAuth(String refresh){
-        refreshTokenRepository.deleteByRefreshToken(refresh);
+    public AuthJwtEntity saveJwtToken(AuthJwtEntity authJwtEntity){
+        AuthJwtEntity resultAuthJwtEntity = jwtTokenRepository.save(authJwtEntity);
+
+        log.info("JWT 저장 완료 : {}", resultAuthJwtEntity);
+        return resultAuthJwtEntity;
     }
 
-    public RefreshEntity findByAccessToken(String access){
-        return refreshTokenRepository.findByAccessToken(access).orElse(null);
+    @Transactional
+    public void saveRedisJwtToken(RedisJwtEntity redisJwtEntity){
+        redisJwtRepository.save(redisJwtEntity);
+    }
 
+    @Transactional
+    public void deleteByRefreshToken(String refresh){
+        jwtTokenRepository.deleteByRefreshToken(refresh);
+    }
+
+    public AuthJwtEntity findByAccessToken(String accessToken){
+        return jwtTokenRepository.findByAccessToken(accessToken).orElse(null);
+    }
+
+    public AuthJwtEntity findByRefreshToken(String refreshToken){
+        return jwtTokenRepository.findByRefreshToken(refreshToken).orElse(null);
     }
 
 

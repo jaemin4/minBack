@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "t_auth_refresh")
-public class RefreshEntity {
+public class AuthJwtEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ 수정됨
@@ -44,7 +44,7 @@ public class RefreshEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateAt;
 
-    public RefreshEntity(String email, String refreshToken, LocalDateTime refreshExpiration, String accessToken, LocalDateTime accessExpiration) {
+    public AuthJwtEntity(String email, String refreshToken, LocalDateTime refreshExpiration, String accessToken, LocalDateTime accessExpiration) {
         this.email = email;
         this.refreshToken = refreshToken;
         this.refreshExpiration = refreshExpiration;

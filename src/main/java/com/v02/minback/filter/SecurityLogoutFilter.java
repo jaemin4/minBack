@@ -1,7 +1,6 @@
 package com.v02.minback.filter;
 
-
-import com.v02.minback.service.front.LogoutFrontService;
+import com.v02.minback.service.front.JwtFrontService;
 import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -24,19 +23,20 @@ import java.io.IOException;
 public class SecurityLogoutFilter extends GenericFilterBean {
 
     private final JwtUtil jwtUtil;
-    private final LogoutFrontService logoutFrontService;
+    private final JwtFrontService jwtFrontService;
+    private final FilterUtil filterUtil;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         doFilter((HttpServletRequest) request, (HttpServletResponse) response, chain);
     }
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        if(!FilterUtil.chkLogoutUrlAndMethod(request)){
+        if(!filterUtil.chkLogoutUrlAndMethod(request)){
             filterChain.doFilter(request, response);
             return;
         }
 
-        String refresh = FilterUtil.chkIsRefresh(request);
+        String refresh = filterUtil.chkIsRefresh(request);
 
         if(refresh == null){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -55,12 +55,12 @@ public class SecurityLogoutFilter extends GenericFilterBean {
             return;
         }
 
-        if(logoutFrontService.findByRefreshName(refresh) == null){
+        if(jwtFrontService.findByRefreshToken(refresh) == null){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
-        Cookie cookie = logoutFrontService.deleteAuth(refresh);
+        Cookie cookie = jwtFrontService.deleteAuth(refresh);
 
         log.info("로그아웃");
         response.addCookie(cookie);

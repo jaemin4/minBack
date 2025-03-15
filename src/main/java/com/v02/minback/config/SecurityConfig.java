@@ -1,12 +1,9 @@
 package com.v02.minback.config;
 
-
-
 import com.v02.minback.filter.SecurityJwtFilter;
 import com.v02.minback.filter.SecurityLoginFilter;
 import com.v02.minback.filter.SecurityLogoutFilter;
 import com.v02.minback.service.front.JwtFrontService;
-import com.v02.minback.service.front.LogoutFrontService;
 import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
 import lombok.AllArgsConstructor;
@@ -37,7 +34,6 @@ public class SecurityConfig {
     private final JwtUtil jwtUtil;
     private final FilterUtil filterUtil;
     private final JwtFrontService jwtFrontService;
-    private final LogoutFrontService logoutFrontService;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
@@ -86,7 +82,7 @@ public class SecurityConfig {
                 authenticationManager(authenticationConfiguration), jwtFrontService),
                 UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterBefore(new SecurityLogoutFilter(jwtUtil,logoutFrontService), LogoutFilter.class);
+        http.addFilterBefore(new SecurityLogoutFilter(jwtUtil,jwtFrontService,filterUtil), LogoutFilter.class);
 
         http.sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));

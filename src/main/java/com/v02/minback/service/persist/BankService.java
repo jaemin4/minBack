@@ -30,21 +30,12 @@ public class BankService {
     private final UserRepository userRepository;
     private final Utils utils;
 
-    public RestResult getAll() {
-        Map<String, Object> data = new LinkedHashMap<>();
-        data.put("data", bankAccountRepository.findAll());
-
-        return new RestResult("전체 조회 성공", "success", data);
-    }
-
-
     @Transactional
     public void userSave(UserEntity userEntity){
         UserEntity resultEntity = userRepository.save(userEntity);
 
         log.info("t_user 저장 성공 : {}", utils.toJson(resultEntity));
     }
-
 
     @Transactional
     public void deposit(BankAccountDepositParam param, AccountEntity savedAccount) {

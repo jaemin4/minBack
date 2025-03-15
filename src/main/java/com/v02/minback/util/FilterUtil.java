@@ -32,11 +32,11 @@ public class FilterUtil {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
-    public static Boolean chkLogoutUrlAndMethod(HttpServletRequest request){
+    public Boolean chkLogoutUrlAndMethod(HttpServletRequest request){
         return request.getRequestURI().equals("/logout") && "POST".equals(request.getMethod());
     }
 
-    public static String chkIsRefresh(HttpServletRequest request){
+    public String chkIsRefresh(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         for(Cookie cookie : cookies){
             if(cookie.getName().equals("refresh")){
