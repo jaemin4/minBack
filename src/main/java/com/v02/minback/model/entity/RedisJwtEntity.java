@@ -32,7 +32,7 @@ public class RedisJwtEntity implements Serializable {
     private String refreshToken;
     private LocalDateTime refreshExpiration;
     private LocalDateTime accessExpiration;
-    private LocalDateTime createdAt;
+    private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
     public RedisJwtEntity(String email, String refreshToken, LocalDateTime refreshExpiration, String accessToken, LocalDateTime accessExpiration, LocalDateTime createdAt, LocalDateTime updateAt) {
@@ -41,7 +41,7 @@ public class RedisJwtEntity implements Serializable {
         this.refreshExpiration = refreshExpiration;
         this.accessToken = accessToken;
         this.accessExpiration = accessExpiration;
-        this.createdAt = createdAt;
+        this.createAt = createdAt;
         this.updateAt = updateAt;
     }
 
