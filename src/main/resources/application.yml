@@ -1,14 +1,13 @@
 server:
   port: 8080
   servlet:
+    context-path: /
     encoding:
       force-response: true
 
 spring:
   application:
     name: pro
-
-
   datasource:
     url: jdbc:mysql://my8003.gabiadb.com:3306/jmdb
     username: jmhost
@@ -57,13 +56,13 @@ spring:
       cache-null-values: true
 
 
-#mybatis
-#mybatis:
-#  mapper-locations: classpath:mapper/**/*.xml
-#  configuration:
-#    map-underscore-to-camel-case: false
-#logging:
-#  level:
-#    jdbc.sqlonly: INFO
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
 
-
+logging:
+  level:
+    org.springdoc: DEBUG
+    org.springframework.web: DEBUG
