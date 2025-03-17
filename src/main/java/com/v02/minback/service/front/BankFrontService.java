@@ -8,16 +8,12 @@ import com.v02.minback.model.param.*;
 import com.v02.minback.model.result.RestResult;
 import com.v02.minback.service.persist.BankService;
 import com.v02.minback.util.ServiceUtil;
-import com.v02.minback.util.ValidationChecker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Map;
-
-import static com.v02.minback.util.ValidationChecker.transferValidationCheck;
-import static com.v02.minback.util.ValidationChecker.withrdrawValidationCheck;
-
 
 @Slf4j
 @Service
@@ -25,14 +21,12 @@ import static com.v02.minback.util.ValidationChecker.withrdrawValidationCheck;
 public class BankFrontService {
 
     private final BankService bankService;
-//    private final RabbitService rabbitService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final RabbitTemplate rabbitTemplate;
 
 
     public RestResult saveUserAccount(UserAccountSaveParam param){
-        ValidationChecker.userAccountSaveValidationCheck(param);
         param.setRole("ROLE_ADMIN");
-
         String user_id = ServiceUtil.createUserId();
 
         UserEntity userEntity = new UserEntity(
@@ -53,14 +47,10 @@ public class BankFrontService {
         );
 
         bankService.saveBankAccount(bankAccountEntity);
-
-
         return new RestResult("회원가입 성공", "success");
     }
 
     public RestResult deposit(BankAccountDepositParam param) {
-        ValidationChecker.depositValidationCheck(param);
-
         final AccountEntity savedAccount = bankService.getBankAccount(param.getAccountNumber());
         BalanceLogParam balanceLogParam = new BalanceLogParam();
 
@@ -78,7 +68,7 @@ public class BankFrontService {
         final AccountEntity updatedAccount = bankService.getBankAccount(param.getAccountNumber());
 
         balanceLogParam.setUpdatedAccount(Map.of(
-            "account_number", updatedAccount.getAccountNumber(),
+            "accountNumber", updatedAccount.getAccountNumber(),
             "balance", updatedAccount.getBalance()
         ));
 
@@ -89,8 +79,6 @@ public class BankFrontService {
     }
 
     public RestResult withdraw(BankAccountWithdrawParam param){
-        withrdrawValidationCheck(param);
-
         final AccountEntity savedAccount = bankService.getBankAccount(param.getAccountNumber());
 
         if(savedAccount.getBalance() - param.getBalance() <= 0){
@@ -123,16 +111,13 @@ public class BankFrontService {
     }
 
     public RestResult transfer(BankAccountTransferParam param){
-        transferValidationCheck(param);
-
         final AccountEntity fromSavedAccount = bankService.getBankAccount(param.getFromAccountNumber());
 
         if(fromSavedAccount.getBalance() <= param.getBalance()){
             throw new RuntimeException("잔액이 부족합니다");
         }
-
-        final AccountEntity toSavedAccount = bankService.getBankAccount(param.getToAccountNumber());
         final BalanceLogParam balanceLogParam = new BalanceLogParam();
+        final AccountEntity toSavedAccount = bankService.getBankAccount(param.getToAccountNumber());
 
         String fullMethodName = this.getClass().getSimpleName() + "." +
                 new Object() {}.getClass().getEnclosingMethod().getName();

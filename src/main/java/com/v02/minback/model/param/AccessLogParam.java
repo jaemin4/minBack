@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccessLogParam {
+    private String email;
     private Long accessLogId;
     private String method;
     private String uri;
@@ -54,5 +55,8 @@ public class AccessLogParam {
         this.status = status;
         this.statusCode = statusCode;
         this.elapsed = elapsed;
+    }
+
+    public AccessLogParam(String method, String requestURI, String queryString, String s, String reduce, String string, String header, String referer, String s1, String host, String authorization) {
     }
 }

@@ -1,5 +1,11 @@
 package com.v02.minback.resolver;
 
+import com.v02.minback.model.result.AuthResult;
+import com.v02.minback.service.front.ThreadLocalAuthResultService;
+import com.v02.minback.util.Utils;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.type.descriptor.java.ObjectJavaType;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,8 +16,11 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolver {
+
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         parameter.getParameterAnnotations();
@@ -27,5 +36,6 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
         }
 
         return authentication;
+
     }
 }
