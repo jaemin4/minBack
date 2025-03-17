@@ -1,5 +1,1 @@
- - Spring Security
- - 중앙화된 JWT
- - 데이터베이스 Transaction update point 로그 저장
- - gregate Pattern(ServiceLayer에 FrontService 추가)
-  
+인가 및 기본적인 모니터링툴 개발 중입니다.
