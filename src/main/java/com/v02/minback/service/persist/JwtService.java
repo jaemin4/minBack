@@ -24,12 +24,6 @@ public class JwtService {
         log.info("JWT 저장 완료 : {}", resultAuthJwtEntity);
         return resultAuthJwtEntity;
     }
-
-    @Transactional
-    public void saveRedisJwtToken(RedisJwtEntity redisJwtEntity){
-        redisJwtRepository.save(redisJwtEntity);
-    }
-
     @Transactional
     public void deleteByRefreshToken(String refresh){
         jwtTokenRepository.deleteByRefreshToken(refresh);

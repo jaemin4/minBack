@@ -2,6 +2,7 @@ package com.v02.minback.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.v02.minback.model.param.AccessLogParam;
+import com.v02.minback.service.front.ThreadLocalAccessLogService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,17 +27,13 @@ public class AccessLogFilter implements Filter {
 
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
+    private final ThreadLocalAccessLogService threadLocalAccessLogService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         ContentCachingRequestWrapper req = new ContentCachingRequestWrapper((HttpServletRequest) request);
         ContentCachingResponseWrapper res = new ContentCachingResponseWrapper((HttpServletResponse) response);
         LocalDateTime requestAt = LocalDateTime.now();
-
-
-        chain.doFilter(req,res);
-
-        LocalDateTime responseAt = LocalDateTime.now();
 
         AccessLogParam accessLogParam = new AccessLogParam(
                 req.getMethod(),
@@ -51,22 +48,30 @@ public class AccessLogFilter implements Filter {
                 req.getHeader("Referer"),
                 Optional.ofNullable(req.getHeader("X-Forwarded-For")).orElse(req.getRemoteAddr()),
                 req.getHeader("Host"),
-                req.getHeader("Authorization"),
-                requestAt,
-                Thread.currentThread().getName(),
-                responseAt,
-                new String(res.getContentAsByteArray()),
-                res.getStatus() >= 400 ? "ERROR" : "SUCCESS",
-                res.getStatus(),
-                Duration.between(requestAt, responseAt).toMillis()
+                req.getHeader("Authorization")
         );
 
-        rabbitTemplate.convertAndSend("bank.exchange","bank.log.access", accessLogParam);
+        try {
 
-        res.copyBodyToResponse();
+            threadLocalAccessLogService.putAccessLog(accessLogParam);
+            chain.doFilter(req, res);
+            LocalDateTime responseAt = LocalDateTime.now();
+
+            final AccessLogParam accessLogParamAfter = threadLocalAccessLogService.getAccessLog();
+
+            accessLogParamAfter.setResponseAt(responseAt);
+            accessLogParamAfter.setRequestBody(new String(res.getContentAsByteArray()));
+            accessLogParamAfter.setStatus(res.getStatus() >= 400 ? "ERROR" : "SUCCESS");
+            accessLogParamAfter.setStatusCode(res.getStatus());
+            accessLogParamAfter.setElapsed(Duration.between(requestAt, responseAt).toMillis());
+
+            rabbitTemplate.convertAndSend("bank.exchange", "bank.log.access", accessLogParamAfter);
+
+            res.copyBodyToResponse();
+        } finally {
+            threadLocalAccessLogService.removeThreadLocal();
+        }
 
     }
-
-
 
 }

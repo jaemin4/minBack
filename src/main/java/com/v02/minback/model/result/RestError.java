@@ -3,6 +3,8 @@ package com.v02.minback.model.result;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RestError {
@@ -21,6 +23,8 @@ public class RestError {
 
     private String redirect;
 
+    private Map<String, String> validationError;
+
     public RestError() { }
 
     public RestError(String id, String message) {
@@ -34,6 +38,13 @@ public class RestError {
         this.id = id;
         this.errorCode = errorCode;
         this.message = message;
+    }
+
+    public RestError(String id, String errorCode, Map<String,String> validationError) {
+
+        this.id = id;
+        this.errorCode = errorCode;
+        this.validationError = validationError;
     }
 
 }

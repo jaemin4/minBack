@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 
 @Slf4j
@@ -22,7 +21,6 @@ public class SecurityJwtFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final FilterUtil filterUtil;
     private final JwtFrontService jwtFrontService;
-
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -35,7 +33,8 @@ public class SecurityJwtFilter extends OncePerRequestFilter {
                 jwtFrontService.JwtValidationByAccessToken(request.getHeader("Authorization"));
 
         if(authResult == null){
-            filterChain.doFilter(request,response);
+            log.warn("인증되지 않은 사용자");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 

@@ -2,20 +2,42 @@ package com.v02.minback.exception;
 
 import com.v02.minback.model.result.RestError;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public RestError handleValidationExceptions(MethodArgumentNotValidException e) {
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : e.getBindingResult().getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+
+
+        return new RestError("validation_error", "유효성 검사 실패", errors);
+    }
 
 
     @ExceptionHandler(BankRuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
     public RestError handleBankRuntimeException(BankRuntimeException e) {
         return new RestError("bank_exception", e.getMessage());
+    }
+
+    @ExceptionHandler(AuthRuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+    public RestError handleBankRuntimeException(AuthRuntimeException e) {
+        return new RestError("auth_exception", e.getMessage());
     }
 
     @ExceptionHandler(UserRuntimeException.class)
