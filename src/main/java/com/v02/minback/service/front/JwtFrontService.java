@@ -46,7 +46,6 @@ public class JwtFrontService {
         return redisCachingService.JwtValidationByAccessToken(accessToken);
     }
 
-
     public AuthJwtEntity reissueJwtToken(String refresh){
         if(jwtService.findByRefreshToken(refresh) == null){
             throw new AuthRuntimeException("RefreshToken Invalid");
