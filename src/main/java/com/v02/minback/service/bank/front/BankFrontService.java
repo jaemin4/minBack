@@ -1,4 +1,4 @@
-package com.v02.minback.service.front;
+package com.v02.minback.service.bank.front;
 
 import com.v02.minback.exception.BankRuntimeException;
 import com.v02.minback.model.entity.AccountEntity;
@@ -6,7 +6,7 @@ import com.v02.minback.model.entity.BankAccountEntity;
 import com.v02.minback.model.entity.UserEntity;
 import com.v02.minback.model.param.*;
 import com.v02.minback.model.result.RestResult;
-import com.v02.minback.service.persist.BankService;
+import com.v02.minback.service.bank.persist.BankService;
 import com.v02.minback.util.ServiceUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

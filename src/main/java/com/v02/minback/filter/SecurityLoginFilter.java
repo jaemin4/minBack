@@ -1,7 +1,7 @@
 package com.v02.minback.filter;
 
 import com.v02.minback.model.result.JwtTokenResponse;
-import com.v02.minback.service.front.JwtFrontService;
+import com.v02.minback.service.auth.front.JwtFrontService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.v02.minback.service.persist;
+package com.v02.minback.service.auth.persist;
 
 import com.v02.minback.model.entity.AuthJwtEntity;
 import com.v02.minback.model.entity.RedisJwtEntity;

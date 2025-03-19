@@ -1,4 +1,4 @@
-package com.v02.minback.oauth2;
+package com.v02.minback.model.details;
 
 public interface Oauth2UserInfo {
     String getProvider();
