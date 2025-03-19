@@ -1,7 +1,7 @@
 package com.v02.minback.util;
 
 
-import com.v02.minback.model.CustomUserDetails;
+import com.v02.minback.model.details.CustomUserDetails;
 import com.v02.minback.model.entity.UserEntity;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

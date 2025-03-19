@@ -1,12 +1,11 @@
-package com.v02.minback.oauth2;
+package com.v02.minback.model.details;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
 
 @AllArgsConstructor
-public class GoogleUserDetails implements Oauth2UserInfo{
+public class GoogleUserDetails implements Oauth2UserInfo {
 
     private Map<String, Object> attributes;
     @Override

@@ -1,7 +1,7 @@
 package com.v02.minback.filter;
 
 import com.v02.minback.model.entity.RedisJwtEntity;
-import com.v02.minback.service.front.JwtFrontService;
+import com.v02.minback.service.auth.front.JwtFrontService;
 import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;

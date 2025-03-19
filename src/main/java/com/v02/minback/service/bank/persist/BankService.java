@@ -1,4 +1,4 @@
-package com.v02.minback.service.persist;
+package com.v02.minback.service.bank.persist;
 
 import com.v02.minback.exception.BankRuntimeException;
 import com.v02.minback.model.entity.AccountEntity;

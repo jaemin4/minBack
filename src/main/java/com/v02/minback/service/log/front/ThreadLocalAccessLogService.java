@@ -1,4 +1,4 @@
-package com.v02.minback.service.front;
+package com.v02.minback.service.log.front;
 
 import com.v02.minback.model.param.AccessLogParam;
 import org.springframework.stereotype.Service;

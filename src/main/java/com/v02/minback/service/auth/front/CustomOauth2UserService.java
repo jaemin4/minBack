@@ -1,6 +1,9 @@
-package com.v02.minback.oauth2;
+package com.v02.minback.service.auth.front;
 
 import com.v02.minback.model.entity.UserEntity;
+import com.v02.minback.model.details.CustomOauth2UserDetails;
+import com.v02.minback.model.details.GoogleUserDetails;
+import com.v02.minback.model.details.Oauth2UserInfo;
 import com.v02.minback.repository.UserRepository;
 import com.v02.minback.util.ServiceUtil;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +38,7 @@ public class CustomOauth2UserService extends DefaultOAuth2UserService {
             oauth2UserInfo = new GoogleUserDetails(oAuth2User.getAttributes());
         }
 
+        assert oauth2UserInfo != null;
         String providerId = oauth2UserInfo.getProviderId();
         String email = oauth2UserInfo.getEmail();
         String loginId = provider + "_" + providerId;

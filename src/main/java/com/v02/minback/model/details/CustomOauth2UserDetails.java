@@ -1,4 +1,4 @@
-package com.v02.minback.oauth2;
+package com.v02.minback.model.details;
 
 import com.v02.minback.model.entity.UserEntity;
 import lombok.RequiredArgsConstructor;

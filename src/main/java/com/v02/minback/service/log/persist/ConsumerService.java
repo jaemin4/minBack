@@ -1,4 +1,4 @@
-package com.v02.minback.service;
+package com.v02.minback.service.log.persist;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.v02.minback.model.entity.AccessLogEntity;
