@@ -35,7 +35,6 @@ public class BankAccountController {
     public RestResult deposit(@Valid @RequestBody BankAccountDepositParam param, @CurrentUser Authentication authentication) {
         log.info("/deposit : {}", utils.toJson(param));
         log.info("현재 사용자 : {}",utils.toJson(authentication));
-        log.info("현재 사용자 : {}",utils.toJson(authentication.getDetails()));
 
         return bankFrontService.deposit(param);
     }

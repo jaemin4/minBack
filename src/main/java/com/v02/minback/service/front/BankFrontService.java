@@ -74,7 +74,7 @@ public class BankFrontService {
 
 
 
-        //rabbitTemplate.convertAndSend("bank.exchange","bank.log.deposit", balanceLogParam);
+        rabbitTemplate.convertAndSend("bank.exchange","bank.log.deposit", balanceLogParam);
         return new RestResult("입금 성공", "success");
     }
 
@@ -105,7 +105,7 @@ public class BankFrontService {
                 "balance", updatedAccount.getBalance()
         ));
 
-        //rabbitTemplate.convertAndSend("bank.exchange","bank.log.withdraw", balanceLogParam);
+        rabbitTemplate.convertAndSend("bank.exchange","bank.log.withdraw", balanceLogParam);
         return new RestResult("출금 성공", "success");
 
     }
@@ -134,7 +134,7 @@ public class BankFrontService {
 
         bankService.transfer(param,fromSavedAccount,toSavedAccount);
 
-        //rabbitTemplate.convertAndSend("bank.exchange","bank.log.transfer", balanceLogParam);
+        rabbitTemplate.convertAndSend("bank.exchange","bank.log.transfer", balanceLogParam);
         return new RestResult("이체 성공","success");
     }
 

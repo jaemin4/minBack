@@ -34,6 +34,7 @@ public class UserEntity {
     @Column(length = 99)
     private String role;
 
+
     @Column(length = 99)
     private String email;
 
@@ -48,7 +49,8 @@ public class UserEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateAt;
 
-
+    private String provider;
+    private String providerId;
     public UserEntity(String name) {
         this.name = name;
     }
@@ -63,4 +65,14 @@ public class UserEntity {
         this.email = email;
         this.password = password;
     }
+
+    public UserEntity(String userId, String name, String role, String email, String provider, String providerId) {
+        this.userId = userId;
+        this.name = name;
+        this.role = role;
+        this.email = email;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
+
 }

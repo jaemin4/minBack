@@ -65,6 +65,14 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.formLogin(AbstractHttpConfigurer::disable);
         http.httpBasic(AbstractHttpConfigurer::disable);
+
+        http
+                .oauth2Login((auth) -> auth.loginPage("/oauth-login/login")
+                        .defaultSuccessUrl("/oauth-login")
+                        .failureUrl("/oauth-login/login")
+                        .permitAll());
+
+
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/user/bank/**").permitAll()
                 .requestMatchers("/user/signup/**").permitAll()
