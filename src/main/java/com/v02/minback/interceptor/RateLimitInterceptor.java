@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @Slf4j
 public class RateLimitInterceptor implements HandlerInterceptor {
-    private static final long TIME_WINDOW = 60000;
+    private static final long TIME_WINDOW = 10000;
     private static final int MAX_REQUESTS = 10;
     private final ConcurrentHashMap<String, UserRequestParam> requestCounts = new ConcurrentHashMap<>();
 
@@ -40,7 +40,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
                 return false;
             }
         }
-
+        //추가로 문자 or telegram or
         log.info("✅ Request Allowed for IP: " + clientIp + " (Count: " + userRequestInfo.requestCount.get() + ")");
         return true;
     }
