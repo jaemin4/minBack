@@ -1,21 +1,31 @@
 package com.v02.minback.controller;
 
+import com.v02.minback.model.entity.AccessLogEntity;
+import com.v02.minback.model.param.AccessLogGetAllParam;
 import com.v02.minback.model.result.RestMessage;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.v02.minback.model.result.RestResult;
+import com.v02.minback.service.log.front.LogFrontService;
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/admin")
 @RestController
+@RequiredArgsConstructor
 public class AdminController {
 
-    @GetMapping("/access")
-    public RestMessage access(){
+    private final LogFrontService logFrontService;
 
-        return new RestMessage("ROLE_ADMIN");
+    @Operation(summary = "AccessLog 페이징", description = "AccessLog 페이징된 데이터를 조회합니다.")
+    @PostMapping("/accessLog/paging")
+    public RestResult getAccessLogs(@RequestBody AccessLogGetAllParam param){
+
+
+        return logFrontService.getAccessLogs(param);
     }
-    @GetMapping("/test")
-    public RestMessage TestAccess(){
-        return new RestMessage("ROLE_ADMIN");
-    }
+
+
+
+
+
 }
