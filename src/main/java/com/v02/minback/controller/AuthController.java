@@ -3,7 +3,7 @@ package com.v02.minback.controller;
 import com.v02.minback.exception.UserRuntimeException;
 import com.v02.minback.model.entity.AuthJwtEntity;
 import com.v02.minback.model.result.RestResult;
-import com.v02.minback.service.auth.front.JwtFrontService;
+import com.v02.minback.service.front.JwtFrontService;
 import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;

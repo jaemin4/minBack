@@ -1,4 +1,4 @@
-package com.v02.minback.service.bank.persist;
+package com.v02.minback.service.persist;
 
 import com.v02.minback.exception.BankRuntimeException;
 import com.v02.minback.model.entity.AccountEntity;
@@ -7,7 +7,6 @@ import com.v02.minback.model.entity.UserEntity;
 import com.v02.minback.model.param.BankAccountDepositParam;
 import com.v02.minback.model.param.BankAccountTransferParam;
 import com.v02.minback.model.param.BankAccountWithdrawParam;
-import com.v02.minback.model.result.RestResult;
 import com.v02.minback.repository.AccountRepository;
 import com.v02.minback.repository.BankAccountRepository;
 import com.v02.minback.repository.UserRepository;
@@ -17,8 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 
 @Slf4j
@@ -51,7 +48,6 @@ public class BankService {
        AccountEntity updatedAccount = accountRepository.save(savedAccount);
 
        log.info("출금 성공 : {} {}", utils.toJson(savedAccount), utils.toJson(updatedAccount));
-
     }
 
     public Long getNextAccountNumber() {

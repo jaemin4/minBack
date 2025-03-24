@@ -1,7 +1,7 @@
-package com.v02.minback.service.log.front;
+package com.v02.minback.service.front;
 import com.v02.minback.model.param.AccessLogGetAllParam;
 import com.v02.minback.model.result.RestResult;
-import com.v02.minback.service.log.persist.LogService;
+import com.v02.minback.service.persist.LogService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

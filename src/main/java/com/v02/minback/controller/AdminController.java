@@ -1,10 +1,8 @@
 package com.v02.minback.controller;
 
-import com.v02.minback.model.entity.AccessLogEntity;
 import com.v02.minback.model.param.AccessLogGetAllParam;
-import com.v02.minback.model.result.RestMessage;
 import com.v02.minback.model.result.RestResult;
-import com.v02.minback.service.log.front.LogFrontService;
+import com.v02.minback.service.front.LogFrontService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

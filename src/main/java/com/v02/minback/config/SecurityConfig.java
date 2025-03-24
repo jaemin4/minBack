@@ -3,7 +3,7 @@ package com.v02.minback.config;
 import com.v02.minback.filter.SecurityJwtFilter;
 import com.v02.minback.filter.SecurityLoginFilter;
 import com.v02.minback.filter.SecurityLogoutFilter;
-import com.v02.minback.service.auth.front.JwtFrontService;
+import com.v02.minback.service.front.JwtFrontService;
 import com.v02.minback.util.FilterUtil;
 import com.v02.minback.util.JwtUtil;
 import lombok.AllArgsConstructor;

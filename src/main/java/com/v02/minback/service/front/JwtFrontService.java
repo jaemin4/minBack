@@ -1,11 +1,11 @@
-package com.v02.minback.service.auth.front;
+package com.v02.minback.service.front;
 
 import com.v02.minback.exception.AuthRuntimeException;
 import com.v02.minback.model.entity.AuthJwtEntity;
 import com.v02.minback.model.entity.RedisJwtEntity;
 import com.v02.minback.model.result.JwtTokenResponse;
-import com.v02.minback.service.auth.persist.JwtService;
-import com.v02.minback.service.auth.persist.RedisCachingService;
+import com.v02.minback.service.persist.JwtService;
+import com.v02.minback.service.third.RedisCachingService;
 import com.v02.minback.util.JwtUtil;
 import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;

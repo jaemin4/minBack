@@ -6,7 +6,7 @@ import com.v02.minback.model.param.BankAccountWithdrawParam;
 import com.v02.minback.model.param.UserAccountSaveParam;
 import com.v02.minback.model.result.RestResult;
 import com.v02.minback.resolver.CurrentUser;
-import com.v02.minback.service.bank.front.BankFrontService;
+import com.v02.minback.service.front.BankFrontService;
 import com.v02.minback.util.Utils;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
