@@ -13,24 +13,11 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RestResult {
 
-    @JsonIgnore
-    private boolean success = false;
-
     private Map<String, Object> data;
-
-    private List<?> list;
-
-    private String url;
-
     private String message;
-
     private String status;
-
     public RestResult() { }
 
-    public RestResult(String url) {
-        this.url = url;
-    }
 
     public RestResult(Map<String, Object> data) {
         this.data = data;

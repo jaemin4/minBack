@@ -13,8 +13,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @Slf4j
 public class RateLimitInterceptor implements HandlerInterceptor {
-    private static final long TIME_WINDOW = 10000;
-    private static final int MAX_REQUESTS = 10;
+    private static final long TIME_WINDOW = 6000;
+    private static final int MAX_REQUESTS = 80;
     private final ConcurrentHashMap<String, UserRequestParam> requestCounts = new ConcurrentHashMap<>();
 
 
